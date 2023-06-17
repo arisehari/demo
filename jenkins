@@ -1,0 +1,29 @@
+pipelie
+{
+    agent any
+    stages{
+        stage (git) {
+            steps {
+                git branch: 'main', url: 'https://github.com/arisehari/demo.git'
+            }
+        }
+        stage (maven) {
+            stepsn {
+                sh 'mvn clean package'
+            }
+        }
+        stage (depoly) {
+            steps{
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.108.217.156:8080/')], contextPath: 'hari', war: '**/*.war'
+            }
+        }
+}
+}
+
+        
+    
+
+        
+    
+
+    
